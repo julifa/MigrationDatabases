@@ -20,6 +20,9 @@ import fastavro
 app = Flask(__name__)
 api = Api(app)
 
+db_user = os.environ.get('DB_USER')
+db_password = os.environ.get('DB_PASS')
+
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
