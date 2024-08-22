@@ -30,7 +30,7 @@ def hello_world():
 def create_connection():
     conn = None
     base_dir = os.path.abspath(os.path.dirname(__file__))  # Absolute path to the api folder
-    database_path = os.path.join(base_dir, '../db/test_prod.db')  # Corrected path to the db folder
+    database_path = os.path.join(base_dir, '../db/test_prod.db')  #Path to the db folder
     try:
         conn = sqlite3.connect(database_path)
         return conn
