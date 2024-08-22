@@ -24,8 +24,6 @@ api = Api(app)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-
-
 # Establish a connection to the database
 def create_connection():
     conn = None
