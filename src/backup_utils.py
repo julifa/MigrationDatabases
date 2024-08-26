@@ -5,7 +5,7 @@ import pandas as pd
 
 def backup_table_to_avro(table_name, db_path, avro_file_path):
     base_dir = os.path.abspath(os.path.dirname(__file__))  # Absolute path to the api folder
-    database_path = os.path.join(base_dir, '../db/test_prod.db')
+
     conn = connect(database_path)
     cursor = conn.cursor()
 
