@@ -1,35 +1,33 @@
-import pandas as pd
+import json
 import random
 import datetime
 
-def generate_random_data(num_records):
-    # Lista de nombres y apellidos (puedes ampliarla)
-    first_names = ['John', 'Jane', 'Michael', 'Emily', 'David', 'Olivia', ...]
-    last_names = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Miller', ...]
+def generar_datos_aleatorios():
+    """Genera un diccionario con datos aleatorios."""
+    datetime_str = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    department_id = random.randint(1, 10)
+    id = random.randint(1, 1000)
+    job_id = random.randint(1, 100)
+    name = f"Persona {id}"
 
-    data = []
-    for _ in range(num_records):
-        record = {
-            "datetime": datetime.datetime(
-                random.randint(2020, 2023),  # Año
-                random.randint(1, 12),    # Mes
-                random.randint(1, 28),    # Día
-                random.randint(0, 23),    # Hora
-                random.randint(0, 59),    # Minuto
-                random.randint(0, 59)     # Segundo
-            ).isoformat() + 'Z',
-            "department_id": random.randint(1, 10),
-            "id": random.randint(100, 1000),
-            "job_id": random.randint(100, 200),
-            "name": f"{random.choice(first_names)} {random.choice(last_names)}"
-        }
-        data.append(record)
+    data = {
+        "datetime": datetime_str,
+        "department_id": department_id,
+        "id": id,
+        "job_id": job_id,
+        "name": name
+    }
 
-    df = pd.DataFrame(data)
-    return df
+    return data
 
-# Generar 1200 registros
-df = generate_random_data(1200)
+# Genera 1050 objetos JSON
+datos_json = [generar_datos_aleatorios() for _ in range(1050)]
 
-# Exportar a CSV
-df.to_csv('datos_aleatorios.csv', index=False)
+# Especifica la ruta del archivo donde quieres guardar los datos
+ruta_archivo = "datos.json"
+
+# Abre el archivo en modo escritura y guarda los datos en formato JSON
+with open(ruta_archivo, "w") as archivo:
+    json.dump(datos_json, archivo, indent=4)
+
+print(f"Se han generado y guardado {len(datos_json)} registros en {ruta_archivo}")
